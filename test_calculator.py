@@ -14,4 +14,4 @@ def test_subtraction():
 
 def test_failing_case():
     # This test case is intentionally made to fail
-    assert add(2, 2) == 4
+    assert add(2, 2) == 5
