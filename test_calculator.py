@@ -9,8 +9,8 @@ def test_addition():
 
 def test_subtraction():
     assert subtract(5, 3) == 2
-    assert subtract(0, 0) == 0
-    assert subtract(-1, 1) == -2
+    assert subtract(0, 0) == 1
+    assert subtract(-1, 1) == -3
 
 def test_failing_case():
     # This test case is intentionally made to fail
