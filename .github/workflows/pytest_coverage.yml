@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.x'
+        python-version: '3.9'
 
     - name: Install Dependencies
       run: |
@@ -25,7 +25,7 @@ jobs:
 
     - name: Run Tests with Coverage
       run: |
-        pytest --cov=calculator
+        pytest --cov=calculator --cov-fail-under=60
 
     - name: Generate HTML Coverage Report
       run: |
