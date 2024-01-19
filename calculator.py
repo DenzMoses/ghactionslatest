@@ -1,5 +1,9 @@
-# File: calculator.py
-#add
+"""Calculator Module
+
+This module provides basic mathematical operations.
+
+"""
+
 def add(x, y):
     result = x + y
     print(f"{x} + {y} = {result}")
@@ -33,52 +37,38 @@ def function_to_exclude(x, y):
     result = x * y
     return result
 
-
-
 # Example of excluding code from coverage
 def function_to_exclude(x, y):
     # pragma: no cover
     result = x * y
     return result
 
-
 # Example of excluding code from coverage
 def function_to_exclude(x, y):
     # pragma: no cover
     result = x * y
     return result
-
-
+    
 # Example of excluding code from coverage
 def function_to_exclude(x, y):
     # pragma: no cover
     result = x * y
     return result
-
-
-
+    
 # Example of excluding code from coverage
 def function_to_exclude(x, y):
     # pragma: no cover
     result = x * y
     return result
-
-
-
+    
 # Example of excluding code from coverage
 def function_to_exclude(x, y):
     # pragma: no cover
     result = x * y
     return result
-
-
-
+    
 # Example of excluding code from coverage
 def function_to_exclude(x, y):
     # pragma: no cover
     result = x * y
     return result
-
-
-
-
