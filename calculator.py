@@ -26,3 +26,79 @@ def function_to_exclude(x, y):
     # pragma: no cover
     result = x * y
     return result
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
+
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
+
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
+
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
+
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
+
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
+
+
+# Example of excluding code from coverage
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
+
