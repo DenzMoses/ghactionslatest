@@ -39,4 +39,4 @@ jobs:
 
     - name: Pylint testing
       run: | 
-        pylint calculator.py
+        pylint --fail-under=6 calculator.py
