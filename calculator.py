@@ -21,3 +21,8 @@ def divide(x, y):
     result = x / y
     print(f"{x} / {y} = {result}")
     return result
+
+def function_to_exclude(x, y):
+    # pragma: no cover
+    result = x * y
+    return result
