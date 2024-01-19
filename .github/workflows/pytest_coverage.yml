@@ -41,10 +41,6 @@ jobs:
       run: | 
         pylint --fail-under=6 calculator.py
 
-    - name: Run Unit Tests with unittest
-      run: |
-        python -m unittest discover -s tests -p test_calculator.py
-
     - name: Snyk Dependency Check
       run: |
         npx snyk test
