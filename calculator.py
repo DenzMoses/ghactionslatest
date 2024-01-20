@@ -4,6 +4,7 @@ This module provides basic mathematical operations.
 
 """
 
+
 def add(x, y):
     result = x + y
     print(f"{x} + {y} = {result}")
@@ -62,4 +63,3 @@ def function_to_exclude1234(x, y):
     # pragma: no cover
     result = x * y
     return result
-
