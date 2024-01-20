@@ -5,31 +5,38 @@ on:
     branches:
       - main
 
+
 jobs:
   test_and_coverage:
     runs-on: ubuntu-latest
 
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+
 
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
         python-version: '3.9'
 
+
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pytest pytest-cov pylint flake8 mypy bandit
 
+
     - name: Run Tests with Coverage
       run: |
         pytest --cov=calculator --cov-fail-under=60
 
+
     - name: Generate HTML Coverage Report
       run: |
         coverage html
+
 
     - name: Upload Coverage Report
       uses: actions/upload-artifact@v2
@@ -37,17 +44,21 @@ jobs:
         name: coverage
         path: ./htmlcov
 
+
     - name: Pylint testing
       run: | 
         pylint --fail-under=6 calculator.py
+
 
     - name: Flake testing
       run: |
         flake8 calculator.py
 
+
     - name: MyPY
       run: |
         mypy calculator.py
+
 
     - name: Bandit
       run: |
