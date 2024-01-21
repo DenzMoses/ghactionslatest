@@ -1,8 +1,4 @@
-"""Calculator Module
-
-This module provides basic mathematical operations.
-
-"""
+#Calculator
 
 
 def add(x, y):
@@ -32,34 +28,27 @@ def divide(x, y):
 
 
 def function_to_exclude(x, y):
-    # pragma: no cover
     result = x * y
     return result
 
 
-# Example of excluding code from coverage
 def function_to_exclude1(x, y):
-    # pragma: no cover
     result = x * y
     return result
 
 
-# Example of excluding code from coverage
 def function_to_exclude12(x, y):
     # pragma: no cover
     result = x * y
     return result
 
 
-# Example of excluding code from coverage
 def function_to_exclude123(x, y):
     # pragma: no cover
     result = x * y
     return result
 
 
-# Example of excluding code from coverage
 def function_to_exclude1234(x, y):
-    # pragma: no cover
     result = x * y
     return result
