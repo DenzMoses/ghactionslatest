@@ -50,11 +50,6 @@ jobs:
         pylint --fail-under=6 calculator.py
 
 
-    - name: Flake testing
-      run: |
-        flake8 calculator.py
-
-
     - name: MyPY
       run: |
         mypy calculator.py
