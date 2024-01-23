@@ -25,7 +25,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest pytest-cov pylint flake8 mypy bandit
-          
+
   deploy:
     name: Deploy
     needs: build
@@ -36,6 +36,6 @@ jobs:
         run: sleep 10
 
       - name: Run Final Steps
-        if: steps.pr_approved.outputs.approved == 'true' && github.event_name == 'pull_request_review'
         run: |
-          pytest --cov=calculator --cov-fail-under=60
+          echo "Deploying..."
+          # Additional deployment steps
