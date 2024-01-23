@@ -3,10 +3,12 @@ name: Main CI Build & Deploy Workflow
 on:
   pull_request:
     types:
+      - opened
       - synchronize
-  pull_request_review:
-    types:
-      - submitted
+      - reopened
+      - labeled
+      - review_requested
+      - review_request_removed
 
 jobs:
   build:
@@ -29,10 +31,8 @@ jobs:
     needs: build
     if: github.event.review.state == 'APPROVED'
     runs-on: ubuntu-22.04
+    
     steps:
-      - name: Wait for PR approval
-        run: sleep 10
-
       - name: Run Final Steps
         run: |
           echo "Deploying..."
