@@ -29,7 +29,7 @@ jobs:
   deploy:
     name: Deploy
     needs: build
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.pull_request.reviews[0].state == 'APPROVED'
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.review.state == 'APPROVED'
     runs-on: ubuntu-22.04
     steps:
       - name: Wait for PR approval
