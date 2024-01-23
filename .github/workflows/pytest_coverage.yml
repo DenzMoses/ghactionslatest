@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Wait for PR approval
-        run: sleep 10
+        run: sleep 100
 
       - name: Run Final Steps
         if: steps.pr_approved.outputs.approved == 'true' && github.event_name == 'pull_request_review'
