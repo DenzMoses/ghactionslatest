@@ -6,6 +6,9 @@ on:
       - opened
       - synchronize
       - reopened
+  pull_request_review:
+    types:
+      - submitted
 
 jobs:
   test_and_coverage:
