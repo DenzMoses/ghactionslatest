@@ -1,4 +1,4 @@
-name: Test and Coverage (Part 2)
+name: Manual Approval Workflow
 
 on:
   pull_request_review:
@@ -6,27 +6,19 @@ on:
       - submitted
 
 jobs:
-  test_and_coverage:
+  manual_approval:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check if PR is approved
-      id: pr_approved
-      run: echo "::set-output name=approved::$(if [ -n \"${{ github.event.review.state }}\" ] && [ \"${{ github.event.review.state }}\" == \"approved\" ]; then echo \"true\"; else echo \"false\"; fi)"
+      - name: Check if PR is approved
+        id: pr_approved
+        run: echo "::set-output name=approved::$(if [ -n \"${{ github.event.review.state }}\" ] && [ \"${{ github.event.review.state }}\" == \"approved\" ]; then echo \"true\"; else echo \"false\"; fi)"
 
-    - name: Run Tests with Coverage
-      if: steps.pr_approved.outputs.approved == 'true'
-      run: |
-        pytest --cov=calculator --cov-fail-under=60
+      - name: Wait for PR approval
+        run: sleep 10
 
-    - name: Generate HTML Coverage Report
-      if: steps.pr_approved.outputs.approved == 'true'
-      run: |
-        coverage html
-
-    - name: Upload Coverage Report
-      if: steps.pr_approved.outputs.approved == 'true'
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage
-        path: ./htmlcov
+      - name: Run Final Steps
+        if: steps.pr_approved.outputs.approved == 'true'
+        run: |
+          pytest --cov=calculator --cov-fail-under=60
+          # Additional steps for final stages
