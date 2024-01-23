@@ -1,4 +1,4 @@
-name: Deploy Workflow
+name: Deploy Workflow new
 
 on:
   pull_request:
