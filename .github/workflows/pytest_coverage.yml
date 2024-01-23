@@ -1,4 +1,4 @@
-name: Test and Coverage (Part 1)
+name: Test and Coverage
 
 on:
   pull_request:
@@ -6,9 +6,12 @@ on:
       - opened
       - synchronize
       - reopened
+  pull_request_review:
+    types:
+      - submitted
 
 jobs:
-  initial_steps:
+  test_and_coverage:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,4 +28,26 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest pytest-cov pylint flake8 mypy bandit
 
-    # Add more initial steps if needed
+    - name: Check if PR is approved
+      id: pr_approved
+      run: echo "::set-output name=approved::$(if [ -n \"${{ github.event.review.state }}\" ] && [ \"${{ github.event.review.state }}\" == \"approved\" ]; then echo \"true\"; else echo \"false\"; fi)"
+
+    - name: Wait for PR review state to be updated
+      run: sleep 10
+
+    - name: Run Tests with Coverage
+      if: steps.pr_approved.outputs.approved == 'true'
+      run: |
+        pytest --cov=calculator --cov-fail-under=60
+
+    - name: Generate HTML Coverage Report
+      if: steps.pr_approved.outputs.approved == 'true'
+      run: |
+        coverage html
+
+    - name: Upload Coverage Report
+      if: steps.pr_approved.outputs.approved == 'true'
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage
+        path: ./htmlcov
