@@ -1,53 +1,26 @@
-name: Test and Coverage
+name: Initial Workflow
 
 on:
   pull_request:
     types:
       - opened
-      - synchronize
-      - reopened
-  pull_request_review:
-    types:
-      - submitted
 
 jobs:
-  test_and_coverage:
+  initial_steps:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.9'
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
 
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pytest pytest-cov pylint flake8 mypy bandit
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov pylint flake8 mypy bandit
 
-    - name: Check if PR is approved
-      id: pr_approved
-      run: echo "::set-output name=approved::$(if [ -n \"${{ github.event.review.state }}\" ] && [ \"${{ github.event.review.state }}\" == \"approved\" ]; then echo \"true\"; else echo \"false\"; fi)"
-
-    - name: Wait for PR review state to be updated
-      run: sleep 100
-
-    - name: Run Tests with Coverage
-      if: steps.pr_approved.outputs.approved == 'true'
-      run: |
-        pytest --cov=calculator --cov-fail-under=60
-
-    - name: Generate HTML Coverage Report
-      if: steps.pr_approved.outputs.approved == 'true'
-      run: |
-        coverage html
-
-    - name: Upload Coverage Report
-      if: steps.pr_approved.outputs.approved == 'true'
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage
-        path: ./htmlcov
+      # Add more initial steps if needed
