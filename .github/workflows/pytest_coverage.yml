@@ -33,7 +33,7 @@ jobs:
       run: echo "::set-output name=approved::$(if [ -n \"${{ github.event.review.state }}\" ] && [ \"${{ github.event.review.state }}\" == \"approved\" ]; then echo \"true\"; else echo \"false\"; fi)"
 
     - name: Wait for PR review state to be updated
-      run: sleep 10
+      run: sleep 100
 
     - name: Run Tests with Coverage
       if: steps.pr_approved.outputs.approved == 'true'
