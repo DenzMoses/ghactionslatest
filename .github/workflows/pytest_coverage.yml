@@ -1,18 +1,21 @@
-name: Initial Workflow
+name: Main CI Build & Deploy Workflow
 
 on:
   pull_request:
     types:
       - opened
+      - synchronize
+      - reopened
+      - labeled
+      - review_requested
+      - review_request_removed
 
 jobs:
-  initial_steps:
-    runs-on: ubuntu-latest
-
+  build:
+    name: Build
+    runs-on: ubuntu-22.04
+    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
@@ -22,5 +25,17 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest pytest-cov pylint flake8 mypy bandit
+          
+  deploy:
+    name: Deploy
+    needs: build
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.pull_request.reviews[0].state == 'APPROVED'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Wait for PR approval
+        run: sleep 10
 
-      # Add more initial steps if needed
+      - name: Run Final Steps
+        if: steps.pr_approved.outputs.approved == 'true' && github.event_name == 'pull_request_review'
+        run: |
+          pytest --cov=calculator --cov-fail-under=60
