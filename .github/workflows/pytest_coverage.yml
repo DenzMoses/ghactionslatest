@@ -3,10 +3,12 @@ name: Main CI Build & Deploy Workflow
 on:
   pull_request:
     types:
+      - opened
       - synchronize
-  pull_request_review:
-    types:
-      - submitted
+      - reopened
+      - labeled
+      - review_requested
+      - review_request_removed
 
 jobs:
   build:
