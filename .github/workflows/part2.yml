@@ -18,7 +18,7 @@ jobs:
         run: sleep 10
 
       - name: Run Final Steps
-        if: steps.pr_approved.outputs.approved == 'true'
+        if: steps.pr_approved.outputs.approved == 'true' && github.event_name == 'pull_request_review'
         run: |
           pytest --cov=calculator --cov-fail-under=60
           # Additional steps for final stages
