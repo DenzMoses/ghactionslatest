@@ -6,11 +6,18 @@ on:
       - closed
 
 jobs:
+  initial_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initial Deployment Steps
+        run: |
+          echo "Initial deployment steps go here"
+
   manual_approval:
     runs-on: ubuntu-latest
-    needs: pytest_coverage.initial_steps
+    needs: initial_steps
     steps:
-
       - name: Run Final Steps
         run: |
           pytest --cov=calculator --cov-fail-under=60
+
