@@ -25,7 +25,7 @@ jobs:
   deploy:
     runs-on: ubuntu-22.04
     needs: initial_steps
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' 
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.pull_request.reviews[0].state == 'APPROVED'
     steps: 
        - name: Install Dependencies
          run: |
