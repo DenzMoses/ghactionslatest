@@ -14,9 +14,19 @@ jobs:
           echo "Initial deployment steps go here"
 
   manual_approval:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Final Steps
-        run: |
-          pytest --cov=python--cov-fail-under=60
+      runs-on: ubuntu-latest
+      steps:
+        - name: Set up Python
+          uses: actions/setup-python@v3
+          with:
+            python-version: '3.9'
+
+        - name: Install Dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install pytest pytest-cov pylint flake8 mypy bandit
+    
+        - name: Run Final Steps
+          run: |
+            pytest --cov=python--cov-fail-under=60
 
