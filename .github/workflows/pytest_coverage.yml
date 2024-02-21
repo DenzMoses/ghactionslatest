@@ -1,4 +1,4 @@
-name: Main CI Build Workflow
+name: Main CI Build Workflows
 
 on:
   pull_request:
